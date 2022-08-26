@@ -1,0 +1,104 @@
+
+
+/* .container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    padding: 40px 50px; 
+    padding-top: 60px; 
+    background-color: #6c7b81;
+    
+    text-align: center;
+   
+} */
+body{
+   background-image: url(/css/image9.jpg);
+   background-size: contain;
+   height: 800px;
+   background-position: center;
+   align-items: center;
+   text-align: center;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   align-self: center;
+   padding-top: 10px;
+   padding-left: 10px;
+   padding-right: 10px;
+}
+
+.container{
+    /* background-color: #6c7b81; */
+}
+input {
+    font-size: 17px;
+}
+
+.addButton {
+    font-size: 17px;
+    display: inline-block;
+    padding: 15px 25px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #724f80;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}
+
+.addButton:hover {
+    background-color: #e05080
+}
+
+.addButton:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.regNumber{
+    border: 3px solid black;
+    background-color: rgb(204, 87, 116);
+    width: 7em;
+    float: left;
+    margin: 0.5em;
+    font-weight: bold;
+    font-size: 17px;
+    display: inline-block;
+    padding: 15px 25px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}
+
+.output {
+    background-color: #6c7b81;
+}
+
+.red {
+    color: crimson;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.black {
+    color: #000;
+}
+
+h1{
+    font-family: 'Indie Flower', cursive;
+    color: rgb(78, 56, 85);
+}
+/* @media(max-width: 780px) {
+    .glass {
+        flex-direction: column;
+    }
+}  */

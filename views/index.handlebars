@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+    <title>Reg numbers</title>
+</head>
+
+<body>
+    <div class="container">
+
+        <form action="/add" method="POST">
+            <!-- <fieldset> -->
+            <h1>Regisration Numbers</h1>
+
+            <div class="message">
+
+            </div>
+            <input type="text" name="plateNumber" class="regNumberEntered" placeholder="Enter registration number" value='{{regNumbers.plateNumber}}'>
+            <br>
+            <button type="submit" class="addButton">Add here</button>
+
+        </form>
+        <div class="filter">
+            <h4>Filter by Town</h4>
+            <input type="radio" name="town" valur="">Show all
+            <input type="radio" name="town" value="CA">Cape Town
+            <input type="radio" name="town" value="CJ">Stellenbosch
+            <input type="radio" name="town" value="CY">Delft
+            <input type="radio" name="town" value="CL">Claremont
+        </div>
+        <hr>
+        <div class="regNumbers">
+            <div class="regNumber">
+                CL 234-345
+            </div>
+        </div>
+    </div>
+
+
+    <script src="registration.js"></script>
+</body>
+
+</html>
