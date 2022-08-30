@@ -11,10 +11,9 @@ module.exports = function RegistrationNumbers(db) {
         let results=  await db.oneOrNone('SELECT id from my_town where town_code = $1', [townTag])
         if(output.length===0){
 
-            //    console.log(results)
             await db.none('INSERT INTO registration (platenumber,town_id) VALUES($1, $2)', [registrationNum, results.id])
         }
-      //  return output;
+      
         }
 
         const checkDuplicate = async number => {
