@@ -19,32 +19,42 @@
             <!-- <fieldset> -->
             <h1>Regisration Numbers</h1>
 
-            <div class="message">
+            <div class="error">
+                {{messages.error}}
 
-            </div>
-            <input type="text" name="plateNumber" class="regNumberEntered" placeholder="Enter registration number" value='{{regNumbers.plateNumber}}'>
+            </div><br>
+
+
+            <input type="text" name="plateNumber" class="regNumberEntered" placeholder="Enter registration number"
+                value='{{regNumber.plateNumber}}'>
             <br>
             <button type="submit" class="addButton">Add here</button>
 
         </form>
         <div class="filter">
+
             <h4>Filter by Town</h4>
             <input type="radio" name="town" valur="">Show all
             <input type="radio" name="town" value="CA">Cape Town
             <input type="radio" name="town" value="CJ">Stellenbosch
-            <input type="radio" name="town" value="CY">Delft
-            <input type="radio" name="town" value="CL">Claremont
+            <input type="radio" name="town" value="CY">Belville
+            <input type="radio" name="town" value="CL">Paarl
         </div>
+            <a href="/delete"><button class="addButton1">Unpublish</button></a>
         <hr>
-        <div class="regNumbers">
-            <div class="regNumber">
-                CL 234-345
-            </div>
+        <div class="">
+            {{#each regNumber}}
+
+            <div class="regNumbers"> {{this.platenumber}}</div>
+
+            {{/each}}
+
         </div>
     </div>
 
 
-    <script src="registration.js"></script>
+    {{!--
+    <script src="registration.js"></script> --}}
 </body>
 
 </html>

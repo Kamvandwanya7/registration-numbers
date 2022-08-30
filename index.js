@@ -1,26 +1,41 @@
-const express= require('express');
-const RegistrationNumbers= require('./registration-fact');
-const registrationNumbers= RegistrationNumbers();
-const bodyParser= require('body-parser');
-const exphbs  = require('express-handlebars');
+const express = require('express');
+const RegistrationNumbers = require('./registration-fact');
+const bodyParser = require('body-parser');
+const exphbs = require('express-handlebars');
 const pgp = require("pg-promise")();
-const app= express();
+const flash = require('express-flash')
+const session = require('express-session')
+const app = express();
 
-// const db = pgp(config);
 
-const DATABASE_URL= process.env.DATABASE_URL || "postgresql://localhost:5432/my_registration";
+const DATABASE_URL = process.env.DATABASE_URL || "postgresql://maker:kv123@localhost:5432/my_registration";
 
-const config = { 
-	connectionString : DATABASE_URL
+const config = {
+    connectionString: DATABASE_URL
 }
+
+
+const db = pgp(config);
+
+const registrationNumbers = RegistrationNumbers(db);
+
 
 if (process.env.NODE_ENV == 'production') {
-	config.ssl = { 
-		rejectUnauthorized : false
-	}
+    config.ssl = {
+        rejectUnauthorized: false
+    }
 }
 
-app.engine('handlebars', exphbs.engine({defaultLayout: 'main'}));
+app.use(flash());
+
+app.use(session({
+    secret: 'this is my longest string that is used to test my registration with routes app for browser',
+    resave: false,
+    saveUninitialized: true
+}));
+
+
+app.engine('handlebars', exphbs.engine({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
 app.use(express.static('public'));
@@ -31,24 +46,40 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-app.get('/', function(req, res){
+app.get('/', async function (req, res) {
+    let result = await registrationNumbers.getRegNums()
+    // console.log(result + "gghggggggg")
     res.render('index', {
-        regNumbers: registrationNumbers.getRegNums()
+        regNumber: result
     });
 })
 
-app.post('/add', function(req, res){
-    registrationNumbers.setRegNums({
-        plateNumber: req.body.plateNumber,
-    })
+app.post('/add', async function (req, res) {
+    let results = req.body.plateNumber
+    if (results == '') {
+        req.flash('error', "Please insert a plate number below!")
+    } else if (results !== '') {
+        await registrationNumbers.setRegNums(
+            req.body.plateNumber
+        )
+        req.flash('error', "Plate number already exists!")
+    }
+
+
     res.redirect('/')
 })
 
-// console.log(registrationNumbers.getRegNums)
+app.get('/delete', async function (req, res) {
+    req.flash('error', "You have deleted all registration numbers")
+    await registrationNumbers.deleteAllNumbers()
+    //  if (dlt== true){
+    //  }
+    res.redirect('/')
+});
 
 
-const PORT= process.env.PORT || 2016;
+const PORT = process.env.PORT || 2016;
 
-app.listen(PORT, function(){
+app.listen(PORT, function () {
     console.log('App started at port:')
 })

@@ -1,44 +1,64 @@
-module.exports= function RegistrationNumbers (db){
+module.exports = function RegistrationNumbers(db) {
 
-var regEntered= [];
-
-
-async function setRegNums(registrationNum){
-    let results= await db.manyOrOne('INSERT INTO registration (platenumber) VALUES($1)', [registrationNum, 1])
-    return results;   
- }                                   
-
-//  let results = await db.one('SELECT platenumber FROM registration')
-//  if (results.count == 0) {
-//      await db.none('INSERT INTO registration (platenumber) VALUES($1)', [registrationNum, 1])
-//   }
+    var outputs = {};
 
 
-function getRegNums(){
-    return regEntered;
-}
+    async function setRegNums(registrationNum) {
+        var townTag = registrationNum.slice(0, 2)
+        let output= await db.manyOrNone('SELECT platenumber FROM registration Where platenumber= $1', [registrationNum])
+        //   console.log(output.length + '  gggggggggg')
 
-function registration(){
-    if(registrationNum && town){
-    setRegNums(registrationNum)
-}
-}
-function delftReg(){
-   if (registrationNum.startsWith("CA")){
-    return "Cape Town";
-   }
-}
+        let results=  await db.oneOrNone('SELECT id from my_town where town_code = $1', [townTag])
+        if(output.length===0){
 
-function stellenboschReg(){
-    if(registrationNum.startsWith("CJ")){
-      return "Stellenbosch"
+            //    console.log(results)
+            await db.none('INSERT INTO registration (platenumber,town_id) VALUES($1, $2)', [registrationNum, results.id])
+        }
+      //  return output;
+        }
+
+
+
+    async function getRegNums() {
+        let output = await db.manyOrNone('SELECT platenumber FROM registration')
+        console.log(output)
+        return output;
     }
-}
-return{
-    setRegNums,
-    getRegNums,
-    registration,
-    delftReg,
-    stellenboschReg
-}
+
+    async function deleteAllNumbers() {
+        await db.none('DELETE FROM registration')
+        // console.log(outputss)
+        // return outputs;
+    }
+
+    async function capeTownReg() {
+        await db.one('SELECT FROM my_town WHERE platenumber LIKE "CA%" ')
+        return "Cape Town";
+    }
+
+
+    async function stellenboschReg() {
+        await db.one('SELECT FROM my_town WHERE platenumber LIKE "CJ%" ')
+        return "Stellenbosch";
+    }
+
+    async function paarlReg() {
+        await db.one('SELECT FROM my_town WHERE platenumber LIKE "CL%" ')
+        return "Paarl";
+    }
+
+    async function belvilleReg() {
+        await db.one('SELECT FROM my_town WHERE platenumber LIKE "CY%" ')
+        return "Belville";
+    }
+
+    return {
+        setRegNums,
+        getRegNums,
+        deleteAllNumbers,
+        capeTownReg,
+        stellenboschReg,
+        paarlReg,
+        belvilleReg
+    }
 }

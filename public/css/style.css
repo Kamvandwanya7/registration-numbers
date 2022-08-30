@@ -49,25 +49,50 @@ input {
     box-shadow: 0 9px #999;
 }
 
+
+.addButton1{
+     font-size: 17px;
+    display: inline-block;
+    padding: 15px 25px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #110b16;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}
 .addButton:hover {
-    background-color: #e05080
+    background-color: #a650e0
 }
 
 .addButton:active {
-  background-color: #3e8e41;
+  background-color: #5f632e;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
 
-.regNumber{
+.addButton1:hover {
+    background-color: rgb(54, 27, 117)
+}
+
+.addButton1:active {
+  background-color: #5f632e;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.regNumbers{
     border: 3px solid black;
     background-color: rgb(204, 87, 116);
-    width: 7em;
+    /* width: 7em; */
     float: left;
     margin: 0.5em;
     font-weight: bold;
     font-size: 17px;
-    display: inline-block;
+    /* display: inline-block; */
     padding: 15px 25px;
     cursor: pointer;
     text-align: center;
@@ -83,7 +108,7 @@ input {
     background-color: #6c7b81;
 }
 
-.red {
+.error {
     color: crimson;
     font-weight: bold;
     font-size: 20px;
@@ -97,8 +122,14 @@ h1{
     font-family: 'Indie Flower', cursive;
     color: rgb(78, 56, 85);
 }
-/* @media(max-width: 780px) {
-    .glass {
+@media  only screen and (min-width: 320px) and (max-width: 780px){
+    .container {
         flex-direction: column;
     }
-}  */
+    .body{
+        /* flex-direction: column; */
+    }
+    .menu {
+        flex-direction: column;
+    }
+} 
