@@ -71,8 +71,6 @@ app.post('/add', async function (req, res) {
             req.flash('success', "You successfully added a registration number!")
         }
     }
-
-
     res.redirect('/')
 })
 
