@@ -31,8 +31,4 @@ FOREIGN KEY (town_id) REFERENCES my_town(id)
 );
 
 
-create table registration (
-	id serial not null primary key,
-	platenumber varchar(255) not null,
-	town_id int
-	);
+

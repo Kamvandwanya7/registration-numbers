@@ -15,18 +15,14 @@ const config = {
     connectionString: DATABASE_URL
 }
 
-
-const db = pgp(config);
-
-const registrationNumbers = RegistrationNumbers(db);
-
-
 if (process.env.NODE_ENV == 'production') {
     config.ssl = {
         rejectUnauthorized: false
     }
 }
+const db = pgp(config);
 
+const registrationNumbers = RegistrationNumbers(db);
 app.use(flash());
 
 app.use(session({
