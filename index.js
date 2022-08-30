@@ -59,11 +59,17 @@ app.post('/add', async function (req, res) {
     let results = req.body.plateNumber
     if (results == '') {
         req.flash('error', "Please insert a plate number below!")
-    } else if (results !== '') {
-        await registrationNumbers.setRegNums(
-            req.body.plateNumber
-        )
-        req.flash('error', "Plate number already exists!")
+
+    }
+    else if (results !== '') {
+        if (await registrationNumbers.checkDuplicate(results) === true) {
+            req.flash('error', "Duplicate number!")
+        }  else {
+            await registrationNumbers.setRegNums(
+                req.body.plateNumber
+            )
+            req.flash('success', "You successfully added a registration number!")
+        }
     }
 
 
@@ -71,7 +77,7 @@ app.post('/add', async function (req, res) {
 })
 
 app.get('/delete', async function (req, res) {
-    req.flash('error', "You have deleted all registration numbers")
+    req.flash('success', "You have successfully deleted all registration numbers!")
     await registrationNumbers.deleteAllNumbers()
     //  if (dlt== true){
     //  }

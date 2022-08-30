@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+    <script src="/client.js"></script>
+    
     <title>Reg numbers</title>
 </head>
 
@@ -22,11 +24,17 @@
             <div class="error">
                 {{messages.error}}
 
-            </div><br>
+            </div> <br>
+
+            <div class="success">
+                {{messages.success}}
+
+            </div>  <br>
 
 
             <input type="text" name="plateNumber" class="regNumberEntered" placeholder="Enter registration number"
                 value='{{regNumber.plateNumber}}'>
+            <br>
             <br>
             <button type="submit" class="addButton">Add here</button>
 
@@ -40,6 +48,7 @@
             <input type="radio" name="town" value="CY">Belville
             <input type="radio" name="town" value="CL">Paarl
         </div>
+        <br>
             <a href="/delete"><button class="addButton1">Unpublish</button></a>
         <hr>
         <div class="">

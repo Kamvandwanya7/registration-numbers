@@ -1,7 +1,7 @@
 module.exports = function RegistrationNumbers(db) {
 
     var outputs = {};
-
+   regex= /^A-Z{2}\d{6}/
 
     async function setRegNums(registrationNum) {
         var townTag = registrationNum.slice(0, 2)
@@ -17,7 +17,10 @@ module.exports = function RegistrationNumbers(db) {
       //  return output;
         }
 
-
+        const checkDuplicate = async number => {
+            let output= await db.manyOrNone('SELECT platenumber FROM registration Where platenumber= $1', [number])
+            return output.length === 1 ? true : false 
+        }
 
     async function getRegNums() {
         let output = await db.manyOrNone('SELECT platenumber FROM registration')
@@ -59,6 +62,7 @@ module.exports = function RegistrationNumbers(db) {
         capeTownReg,
         stellenboschReg,
         paarlReg,
-        belvilleReg
+        belvilleReg,
+        checkDuplicate
     }
 }
