@@ -1,35 +1,28 @@
 {
-  "name": "",
+  "name": "registration-numbers",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
-  "license": "AGPL-version-3.0",
-  "private": false,
-  "engines": {
-    "node": ">= 14.0.0",
-    "npm": ">= 6.0.0"
-  },
-  "homepage": "",
-  "repository": {
-    "type": "git",
-    "url": ""
-  },
-  "bugs": "",
-  "keywords": [],
-  "author": {
-    "name": "",
-    "email": "",
-    "url": ""
-  },
-  "contributors": [],
-  "scripts": {
-    "dev": "",
-    "test": "",
-    "start": "node index.js"
+  "directories": {
+    "test": "tests"
   },
   "dependencies": {
     "express": "^4.18.1"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kamvandwanya7/registration-numbers.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kamvandwanya7/registration-numbers/issues"
+  },
+  "homepage": "https://github.com/Kamvandwanya7/registration-numbers#readme"
 }

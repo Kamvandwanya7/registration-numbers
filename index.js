@@ -1,10 +1,11 @@
-const express = require('express');
+
 const RegistrationNumbers = require('./registration-fact');
 const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
 const pgp = require("pg-promise")();
 const flash = require('express-flash')
 const session = require('express-session')
+const express = require('express');
 const app = express();
 
 
