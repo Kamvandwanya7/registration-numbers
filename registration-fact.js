@@ -27,41 +27,26 @@ module.exports = function RegistrationNumbers(db) {
         return output;
     }
 
+    async function filter(){
+        let results=  await db.oneOrNone('SELECT id from my_town where town_code = $1', [townTag])
+        if(results.length===0){
+
+            await db.none('INSERT INTO registration (platenumber,town_id) VALUES($1, $2)', [registrationNum, results.id])
+        }
+    }
+
     async function deleteAllNumbers() {
         await db.none('DELETE FROM registration')
         // console.log(outputss)
         // return outputs;
     }
 
-    async function capeTownReg() {
-        await db.one('SELECT FROM my_town WHERE platenumber LIKE "CA%" ')
-        return "Cape Town";
-    }
-
-
-    async function stellenboschReg() {
-        await db.one('SELECT FROM my_town WHERE platenumber LIKE "CJ%" ')
-        return "Stellenbosch";
-    }
-
-    async function paarlReg() {
-        await db.one('SELECT FROM my_town WHERE platenumber LIKE "CL%" ')
-        return "Paarl";
-    }
-
-    async function belvilleReg() {
-        await db.one('SELECT FROM my_town WHERE platenumber LIKE "CY%" ')
-        return "Belville";
-    }
 
     return {
         setRegNums,
         getRegNums,
         deleteAllNumbers,
-        capeTownReg,
-        stellenboschReg,
-        paarlReg,
-        belvilleReg,
-        checkDuplicate
+        checkDuplicate,
+        filter,
     }
 }
