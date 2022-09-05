@@ -52,10 +52,15 @@ app.get('/', async function (req, res) {
 })
 
 app.post('/add', async function (req, res) {
-    let results = req.body.plateNumber
+    let results = req.body.plateNumber.toUpperCase()
+    let regex= /[A-Z]{0,2}\s[0-9]{3}(\-|\s)?[0-9]{3}/
+
     if (results == '') {
         req.flash('error', "Please insert a plate number below!")
 
+    }
+    else if(regex.test(results)== false){
+        req.flash('error', "Registration number is not valid!")
     }
     else if (results !== '') {
         if (await registrationNumbers.checkDuplicate(results) === true) {
@@ -68,15 +73,38 @@ app.post('/add', async function (req, res) {
         }
     }
     res.redirect('/')
-})
+}) 
+
+
+app.post('/filter', async function (req, res) {
+    let theTown = req.body.town;
+    // req.flash('success', "You have successfully deleted all registration numbers!")
+    let result;
+    if(theTown == 'CA' || theTown == 'CL' || theTown == 'CY' || theTown == 'CJ'){
+        result = await registrationNumbers.filter(theTown);
+    }
+    if(theTown == 'All'){
+        result = await registrationNumbers.getRegNums()
+    }
+    if(result== ''){
+     req.flash('success', "You have no registration numbers inserted yet!")
+
+    }
+
+
+    console.log(result);
+    res.render('index', {
+        regNumber: result
+    })
+});
 
 app.get('/delete', async function (req, res) {
+    // alert('You are about to delete all registration numbers!')
     req.flash('success', "You have successfully deleted all registration numbers!")
     await registrationNumbers.deleteAllNumbers()
-    //  if (dlt== true){
-    //  }
     res.redirect('/')
 });
+
 
 
 const PORT = process.env.PORT || 2016;

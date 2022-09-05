@@ -37,17 +37,20 @@
             <button type="submit" class="addButton">Add here</button>
 
         </form>
-        <div class="filter">
+
+        <form action="/filter" method="POST">
 
             <h4>Filter by Town</h4>
-            <input type="radio" name="town" valur="">Show all
+            <input type="radio" name="town" value="All">Show all
             <input type="radio" name="town" value="CA">Cape Town
             <input type="radio" name="town" value="CJ">Stellenbosch
             <input type="radio" name="town" value="CY">Belville
             <input type="radio" name="town" value="CL">Paarl
-        </div>
+        <a href="/filter"><button class="addButton11">Filter</button></a>
+
+       </form>
         <br>
-            <a href="/delete"><button class="addButton1">Delete Numbers</button></a>
+            <a href="/delete"><button type="submit" class="addButton1">Delete Numbers</button></a>
         <hr>
         <div class="">
             {{#each regNumber}}
