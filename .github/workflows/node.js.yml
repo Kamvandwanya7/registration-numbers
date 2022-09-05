@@ -46,8 +46,8 @@ jobs:
     - run: npm install -g npm
     - run: npm install
     - run: |
-        PGPASSWORD=pg123 psql -h localhost -U coder -d tests -a -f database.sql
+        PGPASSWORD=kv123 psql -h localhost -U maker -d my_registration -a -f database.sql
     - run: npm run build --if-present
     - run: npm test
     env: 
-      DATABASE_URL: postgresql://coder:pg123@localhost:5432/tests
+      DATABASE_URL: postgresql://maker:kv123@localhost:5432/my_registration

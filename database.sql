@@ -31,4 +31,7 @@ FOREIGN KEY (town_id) REFERENCES my_town(id)
 );
 
 
+sudo -u postgres createdb reg_tests;
+
+
 
