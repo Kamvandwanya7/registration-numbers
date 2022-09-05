@@ -21,10 +21,10 @@ jobs:
         image: postgres:latest
         
         env:
-          POSTGRES_DB: tests
-          POSTGRES_PASSWORD: pg123
+          POSTGRES_DB: my_registration
+          POSTGRES_PASSWORD: kv123
           POSTGRES_PORT: 5432
-          POSTGRES_USER: coder
+          POSTGRES_USER: maker
         ports:
           - 5432:5432
         
