@@ -78,7 +78,6 @@ app.post('/add', async function (req, res) {
 
 app.post('/filter', async function (req, res) {
     let theTown = req.body.town;
-    // req.flash('success', "You have successfully deleted all registration numbers!")
     let result;
     if(theTown == 'CA' || theTown == 'CL' || theTown == 'CY' || theTown == 'CJ'){
         result = await registrationNumbers.filter(theTown);
