@@ -20,16 +20,14 @@
         <form action="/add" method="POST">
         
             <h1>Registration Numbers</h1>
-
             <div class="error">
                 {{messages.error}}
-            </div> <br>
-
+            </div> 
             <div class="success">
                 {{messages.success}}
-            </div>  <br>
+            </div>
 
-
+             <strong><p><i> Add registration number below e.g CA 121-111, CY 111-212, CJ 100-123</i></p></strong>
             <input type="text" name="plateNumber" class="regNumberEntered" placeholder="Enter registration number"
                 value='{{regNumber.plateNumber}}'>
             <br>
