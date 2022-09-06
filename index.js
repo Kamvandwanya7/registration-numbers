@@ -53,7 +53,7 @@ app.get('/', async function (req, res) {
 
 app.post('/add', async function (req, res) {
     let results = req.body.plateNumber.toUpperCase()
-    let regex= /[A-Z]{0,2}\s[0-9]{3}(\-|\s)?[0-9]{3}/
+    let regex= /[CA|CY|CJ|CL]{0,2}\s[0-9]{3}(\-|\s)?[0-9]{3}/
 
     if (results == '') {
         req.flash('error', "Please insert a plate number below!")
