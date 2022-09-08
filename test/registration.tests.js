@@ -3,7 +3,7 @@ const RegistrationNumbers = require('../registration-fact');
 
 const pgp = require("pg-promise")();
 
-const DATABASE_URL = process.env.DATABASE_URL || "postgresql://maker:kv123@localhost:5432/reg_tests"
+const DATABASE_URL = process.env.DATABASE_URL || "postgresql://maker:kv123@localhost:5432/my_registration";
 
 const config = {
     connectionString: DATABASE_URL

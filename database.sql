@@ -24,7 +24,7 @@ INSERT INTO my_town (town_name,town_code) VALUES('Stellenbosch', 'CJ');
 create table registration (
 	id serial not null primary key,
 	platenumber varchar(255) not null,
-	town_id int,	
+	town_id int,
 FOREIGN KEY (town_id) REFERENCES my_town(id)
 
 
