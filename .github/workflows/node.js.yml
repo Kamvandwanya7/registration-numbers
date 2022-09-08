@@ -21,7 +21,7 @@ jobs:
         image: postgres:latest
         
         env:
-          POSTGRES_DB: my_registration
+          POSTGRES_DB: reg_tests
           POSTGRES_PASSWORD: kv123
           POSTGRES_PORT: 5432
           POSTGRES_USER: maker
@@ -46,8 +46,8 @@ jobs:
     - run: npm install -g npm
     - run: npm install
     - run: |
-        PGPASSWORD=kv123 psql -h localhost -U maker -d my_registration -a -f database.sql
+        PGPASSWORD=kv123 psql -h localhost -U maker -d reg_tests -a -f database.sql
     - run: npm run build --if-present
     - run: npm test
     env: 
-      DATABASE_URL: postgresql://maker:kv123@localhost:5432/my_registration
+      DATABASE_URL: postgresql://maker:kv123@localhost:5432/reg_tests
