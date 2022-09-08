@@ -2,7 +2,6 @@ module.exports= function RegRoutes(registrationNumbers){
 
 async function home(req, res){
     let result = await registrationNumbers.getRegNums()
-    // console.log(result + "gghggggggg")
     res.render('index', {
         regNumber: result
     });
@@ -54,7 +53,6 @@ async function filterTowns(req, res) {
 }
 
 async function deleteTowns (req, res) {
-    // alert('You are about to delete all registration numbers!')
     req.flash('success', "You have successfully deleted all registration numbers!")
     await registrationNumbers.deleteAllNumbers()
     res.redirect('/')
