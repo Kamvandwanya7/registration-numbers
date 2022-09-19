@@ -41,7 +41,7 @@ async function filterTowns(req, res) {
         result = await registrationNumbers.getRegNums()
     }
     if(result== ''){
-     req.flash('success', "You have no registration numbers inserted yet!")
+     req.flash('successs', "You have no registration numbers inserted yet!")
 
     }
 

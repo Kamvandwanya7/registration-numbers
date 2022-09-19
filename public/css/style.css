@@ -121,6 +121,12 @@ input {
     font-size: 20px;
 }
 
+.successs{
+    color: rgb(90, 21, 110);
+    font-weight: bold;
+    font-size: 24px;
+}
+
 .black {
     color: #000;
 }
