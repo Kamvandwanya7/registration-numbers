@@ -6,7 +6,7 @@ module.exports = function RegistrationNumbers(db) {
     async function setRegNums(registrationNum) {
         var townTag = registrationNum.slice(0, 2)
         let output = await db.manyOrNone('SELECT platenumber FROM registration Where platenumber= $1', [registrationNum])
-        //   console.log(output.length + '  gggggggggg')
+           console.log(townTag + '  gggggggggg')
 
         let results = await db.oneOrNone('SELECT id from my_town where town_code = $1', [townTag])
         if (output.length === 0) {

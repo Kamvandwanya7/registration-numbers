@@ -23,8 +23,7 @@ async function addNumbers(req, res) {
             req.flash('error', "Duplicate number!")
         }  else {
             await registrationNumbers.setRegNums(
-                req.body.plateNumber
-            )
+                results            )
             req.flash('success', "You successfully added a registration number!")
         }
     }
