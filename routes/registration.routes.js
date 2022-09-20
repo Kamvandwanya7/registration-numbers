@@ -10,7 +10,6 @@ async function home(req, res){
 async function addNumbers(req, res) {
     let results = req.body.plateNumber.toUpperCase()
     let regex= /[CA|CY|CJ|CL]{0,2}\s[0-9]{3}(\-|\s)?[0-9]{3}/
-
     if (results == '') {
         req.flash('error', "Please insert a plate number below!")
 
@@ -22,11 +21,14 @@ async function addNumbers(req, res) {
         if (await registrationNumbers.checkDuplicate(results) === true) {
             req.flash('error', "Duplicate number!")
         }  else {
-            await registrationNumbers.setRegNums(
-                results            )
-            req.flash('success', "You successfully added a registration number!")
+                await registrationNumbers.setRegNums(
+                    results            )
+                req.flash('success', "You successfully added a registration number!")
+            }
+
         }
-    }
+
+    
     res.redirect('/')
 }
 
