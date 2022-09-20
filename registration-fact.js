@@ -15,7 +15,7 @@ module.exports = function RegistrationNumbers(db) {
         }
 
     }
-    //  console.log
+
     const checkDuplicate = async number => {
         let output = await db.manyOrNone('SELECT platenumber FROM registration Where platenumber= $1', [number])
         return output.length ===  1 ? true : false
