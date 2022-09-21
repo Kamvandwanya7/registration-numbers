@@ -72,7 +72,13 @@ describe('My database tests', async function () {
         await registNumber.setRegNums("CA 234 542")
         assert.deepEqual([{ "platenumber": "CY 234 542" }, { "platenumber": "CL 234 542" }, { "platenumber": "CA 234 542" }], await registNumber.getRegNums([{ "regNum": "CY 234 542" }, { "regNum": "CL 234 542" }, { "regNum": "CL 234 542" }]));
     });
+    
 
+    it('It should be able to return false if there is no duplicate', async function () {
+        let registNumber = RegistrationNumbers(db);
+  
+        assert.equal(false, await registNumber.checkDuplicate('CA 123-433'));
+    });
  
 });
 
